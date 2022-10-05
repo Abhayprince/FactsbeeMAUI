@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodels="clr-namespace:FactsbeeMAUI.ViewModels"
+             xmlns:models="clr-namespace:FactsbeeMAUI.Models"
+             x:Class="FactsbeeMAUI.MainPage"
+             x:DataType="viewmodels:MainViewModel"
+             Title="Factsbee">
+
+    <VerticalStackLayout>
+        <Label 
+            Text="Fact of the day" 
+            Margin="25" 
+            FontSize="30" />
+
+        <CollectionView ItemsSource="{Binding Categories}">
+            <CollectionView.ItemsLayout>
+                <LinearItemsLayout Orientation="Horizontal" />
+            </CollectionView.ItemsLayout>
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="models:CategoryModel">
+                    <Grid RowDefinitions="Auto, Auto"
+                          Margin="5,0,5,0">
+                        <Image Grid.Row="0"
+                               Source="{Binding Image}"
+                               Aspect="AspectFill"
+                               HeightRequest="160"
+                               WidthRequest="150"/>
+                        <Label Grid.Row="1"
+                               Text="{Binding Name}"
+                               HorizontalTextAlignment="Center"
+                               BackgroundColor="{StaticResource Primary}"
+                               TextColor="White"/>
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+        
+    </VerticalStackLayout>
+
+</ContentPage>
