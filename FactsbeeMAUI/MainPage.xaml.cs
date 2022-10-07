@@ -13,5 +13,10 @@ public partial class MainPage : ContentPage
 
 		BindingContext = viewModel;
 	}
+
+	private async void TapGestureRecognizer_Tapped(object sender, EventArgs e)
+	{
+		await Shell.Current.DisplayAlert("Hi", "Hello, this is tapped from the category", "Ok");
+	}
 }
 

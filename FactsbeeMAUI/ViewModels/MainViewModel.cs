@@ -1,4 +1,5 @@
-﻿using FactsbeeMAUI.Models;
+﻿using FactsbeeMAUI.Data;
+using FactsbeeMAUI.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,6 +17,11 @@ namespace FactsbeeMAUI.ViewModels
         public MainViewModel()
         {
             Categories = CategoryModel.GetCategories();
+
+            FactOfTheDay = FactsData.GetFactOfTheDay();
+
+            RandomFacts = FactsData.GetRandomFacts();
         }
+
     }
 }
