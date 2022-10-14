@@ -18,8 +18,14 @@ public static class MauiProgram
             .UseMauiCommunityToolkit();
 
 		builder.Services.AddSingleton<MainViewModel>();
+		builder.Services.AddTransient<CategoryFactsViewModel>();
+		builder.Services.AddTransient<FactDetailViewModel>();
 
 		builder.Services.AddSingleton<MainPage>();
+		builder.Services.AddTransient<CategoryFactsPage>();
+		builder.Services.AddTransient<FactDetailsPage>();
+
+		builder.Services.AddSingleton<ITextToSpeech>(TextToSpeech.Default);
 
 		return builder.Build();
 	}

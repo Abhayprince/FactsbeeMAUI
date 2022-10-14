@@ -2409,5 +2409,10 @@ namespace FactsbeeMAUI.Data
 
         public static IEnumerable<FactModel> GetRandomFacts(int count = 10) =>
             Facts.OrderBy(x => Guid.NewGuid()).Take(count);
+
+        public static IEnumerable<FactModel> GetCategoryFacts(string categoryName) =>
+            Facts.Where(f => f.CategoryName == categoryName)
+                .OrderBy(f => f.Id)
+                .ToList();
     }
 }

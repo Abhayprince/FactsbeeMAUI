@@ -2,11 +2,52 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="FactsbeeMAUI.Pages.FactDetailsPage"
-             Title="Fact Details Page">
-    <VerticalStackLayout>
-        <Label 
-            Text="Fact Details"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+             xmlns:viewmodels="clr-namespace:FactsbeeMAUI.ViewModels"
+             xmlns:models="clr-namespace:FactsbeeMAUI.Models"    
+             x:DataType="viewmodels:FactDetailViewModel"
+             Title="">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="{Binding Fact.CategoryName}" />
+    </ContentPage.ToolbarItems>
+
+    <Grid RowDefinitions="*, Auto"
+          Padding="20">
+        <Border Grid.Row="0"
+                Stroke="{StaticResource Primary}"
+                StrokeShape="RoundRectangle 40,0,0,40"
+                StrokeThickness="2"
+                Padding="10,0,10,10">
+
+            <Grid RowDefinitions="Auto, *, Auto">
+                <Image Grid.Row="0"
+                       Source="{Binding Fact.CategoryImage}"/>
+
+                <Label Grid.Row="1"
+                       Text="{Binding Fact.Fact}"
+                       VerticalOptions="Center"
+                       HorizontalOptions="Center"
+                       FontSize="20"
+                       FontAttributes="Bold"
+                       TextColor="Gray"/>
+
+                <HorizontalStackLayout Grid.Row="2"
+                                       HorizontalOptions="Center"
+                                       Spacing="25">
+                    
+                    <Button Text="Copy" 
+                            Command="{Binding CopyFactCommand}"/>
+
+                    <Button Text="Speak" 
+                            Command="{Binding SpeakFactCommand}"/>
+
+                </HorizontalStackLayout>
+            </Grid>
+            
+        </Border>
+        <HorizontalStackLayout Grid.Row="1" 
+                               HeightRequest="150">
+            
+        </HorizontalStackLayout>
+    </Grid>
 </ContentPage>

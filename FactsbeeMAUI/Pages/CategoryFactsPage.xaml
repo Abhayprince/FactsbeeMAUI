@@ -2,11 +2,27 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="FactsbeeMAUI.Pages.CategoryFactsPage"
-             Title="Category Facts">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to Category Facts"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+             xmlns:viewmodels="clr-namespace:FactsbeeMAUI.ViewModels"
+             xmlns:models="clr-namespace:FactsbeeMAUI.Models"
+             x:DataType="viewmodels:CategoryFactsViewModel"
+             Title="{Binding Title}">
+
+    <CollectionView ItemsSource="{Binding CategoryFacts}">
+        <CollectionView.ItemTemplate>
+            <DataTemplate x:DataType="models:FactModel">
+                <Frame CornerRadius="0"
+                           Margin="8, 12">
+
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer 
+                                    Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodels:CategoryFactsViewModel}}, Path=GoToFactDetailsPageCommand}"
+                                    CommandParameter="{Binding .}"/>
+                    </Frame.GestureRecognizers>
+
+                    <Label Text="{Binding Fact}"
+                               FontSize="15"/>
+                </Frame>
+            </DataTemplate>
+        </CollectionView.ItemTemplate>
+    </CollectionView>
 </ContentPage>

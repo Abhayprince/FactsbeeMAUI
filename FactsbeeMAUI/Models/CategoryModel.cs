@@ -19,9 +19,20 @@
                 new CategoryModel("Human", "human.png"),
                 new CategoryModel("Entertainment", "entertainment.png"),
                 new CategoryModel("Science & Technology", "science_technology.png"),
-                new CategoryModel("Words & Languagues", "word_language.png"),
+                new CategoryModel("Word & Language", "word_language.png"),
                 new CategoryModel("Misc", "misc.png"),
             };
         }
+
+        public static IReadOnlyDictionary<string, string> CategoryImagesMap =>
+            new Dictionary<string, string>
+            {
+                ["Animal"] = "animal.png",
+                ["Human"] = "human.png",
+                ["Entertainment"] = "entertainment.png",
+                ["Science & Technology"] = "science_technology.png",
+                ["Word & Language"] = "word_language.png",
+                ["Misc"] = "misc.png",
+            };
     }
 }

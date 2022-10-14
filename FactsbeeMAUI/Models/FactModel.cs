@@ -4,15 +4,17 @@
     {
         public int Id { get; set; }
         public string CategoryName { get; set; }
-        public string  CategoryImage { get; set; }
         public string Fact { get; set; }
 
-        public FactModel(int id, string categoryName, string _, string fact, string categoryImage)
+        public FactModel(int id, string _, string __, string fact, string categoryName)
         {
             Id = id;
             CategoryName = categoryName;
-            CategoryImage = categoryImage;
             Fact = fact;
         }
+
+        public string CategoryImage => CategoryModel.CategoryImagesMap.TryGetValue(CategoryName, out string categoryImage) 
+                                        ? categoryImage
+                                        : "";
     }
 }

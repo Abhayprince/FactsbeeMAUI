@@ -65,7 +65,8 @@
                            WidthRequest="150">
                             <Grid.GestureRecognizers>
                                 <TapGestureRecognizer 
-                                    Tapped="TapGestureRecognizer_Tapped" />
+                                    Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodels:MainViewModel}}, Path=GoToCategoryPageCommand}"
+                                    CommandParameter="{Binding Name}"/>
                             </Grid.GestureRecognizers>
                         <Border StrokeThickness="0"
                                 StrokeShape="RoundRectangle 15, 15, 0, 0"
@@ -101,7 +102,12 @@
                 <DataTemplate x:DataType="models:FactModel">
                     <Frame CornerRadius="0"
                            Margin="8, 12">
-                        <Label Text="{Binding Fact}"
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer 
+                                    Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodels:MainViewModel}}, Path=GoToFactDetailsPageCommand}"
+                                    CommandParameter="{Binding .}"/>
+                            </Frame.GestureRecognizers>
+                            <Label Text="{Binding Fact}"
                                FontSize="15"/>
                     </Frame>
                 </DataTemplate>

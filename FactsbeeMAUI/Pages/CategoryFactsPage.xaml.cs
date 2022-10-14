@@ -1,9 +1,21 @@
+
+
 namespace FactsbeeMAUI.Pages;
 
 public partial class CategoryFactsPage : ContentPage
 {
-	public CategoryFactsPage()
+	private readonly CategoryFactsViewModel _viewModel;
+	public CategoryFactsPage(CategoryFactsViewModel viewModel)
 	{
 		InitializeComponent();
+
+		BindingContext = viewModel;
+		_viewModel = viewModel;
+	}
+
+	protected override void OnAppearing()
+	{
+		base.OnAppearing();
+		_viewModel.LoadFacts();
 	}
 }

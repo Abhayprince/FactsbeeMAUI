@@ -2,8 +2,13 @@ namespace FactsbeeMAUI.Pages;
 
 public partial class FactDetailsPage : ContentPage
 {
-	public FactDetailsPage()
+	private readonly FactDetailViewModel _viewModel;
+
+	public FactDetailsPage(FactDetailViewModel viewModel)
 	{
 		InitializeComponent();
+		_viewModel = viewModel;
+
+		BindingContext = viewModel;
 	}
 }
