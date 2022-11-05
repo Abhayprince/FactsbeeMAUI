@@ -23,7 +23,7 @@ namespace FactsbeeMAUI.ViewModels
         {
             Categories = CategoryModel.GetCategories();
 
-            FactOfTheDay = FactsData.GetFactOfTheDay();
+            FactOfTheDay = GetFactOfTheDay();
 
             RandomFacts = FactsData.GetRandomFacts();            
         }
@@ -39,7 +39,31 @@ namespace FactsbeeMAUI.ViewModels
         [RelayCommand]
         private async Task GoToFactDetailsPage(FactModel fact)
         {
-            await Shell.Current.GoToAsync(nameof(FactDetailsPage), new Dictionary<string, object> { [nameof(FactDetailViewModel.Fact)] = fact });
+            var parameters = new Dictionary<string, object> { 
+                [nameof(FactDetailViewModel.Fact)] = fact,
+                [nameof(FactDetailViewModel.Category)] = CategoryModel.Random
+            };
+            await Shell.Current.GoToAsync(nameof(FactDetailsPage), parameters);
+        }
+
+        private static string GetFotdKey(DateTime dateTime) => $"fotd_{dateTime}";
+
+        // Not Working as Expected in Part 4 of the Video
+        // We will fix it in Next Part
+        private FactModel GetFactOfTheDay()
+        {
+            var key = GetFotdKey(DateTime.Today);
+            FactModel fotd = null;
+            if (Preferences.Default.ContainsKey(key))
+            {
+                fotd = Preferences.Default.Get<FactModel>(key, null);
+            }
+            else
+            {
+                fotd = FactsData.GetFactOfTheDay();
+                Preferences.Default.Set<FactModel>(key, fotd);
+            }
+            return fotd;
         }
     }
 }

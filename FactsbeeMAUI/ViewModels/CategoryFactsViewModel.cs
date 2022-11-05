@@ -29,7 +29,12 @@ namespace FactsbeeMAUI.ViewModels
         [RelayCommand]
         private async Task GoToFactDetailsPage(FactModel fact)
         {
-            await Shell.Current.GoToAsync(nameof(FactDetailsPage), new Dictionary<string, object> { [nameof(FactDetailViewModel.Fact)] = fact });
+            var parameters = new Dictionary<string, object>
+            {
+                [nameof(FactDetailViewModel.Fact)] = fact,
+                [nameof(FactDetailViewModel.Category)] = CategoryName
+            };
+            await Shell.Current.GoToAsync(nameof(FactDetailsPage), parameters);
         }
     }
 }

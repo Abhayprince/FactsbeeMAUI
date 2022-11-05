@@ -2,6 +2,7 @@
 {
     public struct CategoryModel
     {
+        public const string Random = "Random";
         public string Name { get; set; }
         public string Image { get; set; }
 

@@ -2414,5 +2414,32 @@ namespace FactsbeeMAUI.Data
             Facts.Where(f => f.CategoryName == categoryName)
                 .OrderBy(f => f.Id)
                 .ToList();
+
+        public static FactModel GetPrevFact(int factId, string category)
+        {
+            var query = FilteredFacts(category);
+
+            var prevFact = query.OrderBy(f => f.Id)
+                            .FirstOrDefault(q => q.Id < factId);
+            return prevFact;
+        }
+        public static FactModel GetNextFact(int factId, string category)
+        {
+            var query = FilteredFacts(category);
+
+            var nextFact = query.OrderBy(f => f.Id)
+                            .FirstOrDefault(q => q.Id > factId); 
+            return nextFact;
+        }
+
+        private static IEnumerable<FactModel> FilteredFacts(string category)
+        {
+            var query = Facts;
+            if (!string.IsNullOrWhiteSpace(category) && category != CategoryModel.Random)
+            {
+                query = query.Where(q => q.CategoryName == category);
+            }
+            return query;
+        }
     }
 }

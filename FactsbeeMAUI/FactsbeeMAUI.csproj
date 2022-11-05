@@ -50,10 +50,16 @@
 
 	<ItemGroup>
 	  <None Remove="Resources\Images\animal.png" />
+	  <None Remove="Resources\Images\arrow_left.svg" />
+	  <None Remove="Resources\Images\arrow_right.svg" />
+	  <None Remove="Resources\Images\copy.svg" />
 	  <None Remove="Resources\Images\entertainment.png" />
 	  <None Remove="Resources\Images\human.png" />
 	  <None Remove="Resources\Images\misc.png" />
 	  <None Remove="Resources\Images\science_technology.png" />
+	  <None Remove="Resources\Images\share.svg" />
+	  <None Remove="Resources\Images\volume_high.svg" />
+	  <None Remove="Resources\Images\volume_x.svg" />
 	  <None Remove="Resources\Images\word_language.png" />
 	</ItemGroup>
 

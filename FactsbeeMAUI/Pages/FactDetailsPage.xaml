@@ -8,9 +8,23 @@
              Title="">
 
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="{Binding Fact.CategoryName}" />
+        <ToolbarItem Text="{Binding Fact.CategoryName}" 
+                     Clicked="ToolbarCategory_Clicked" />
     </ContentPage.ToolbarItems>
 
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style TargetType="ImageButton" x:Key="IconButton">
+                <Setter Property="HeightRequest" Value="25"/>
+                <Setter Property="WidthRequest" Value="25"/>
+            </Style>
+            <Style TargetType="ImageButton" x:Key="IconButtonLarge">
+                <Setter Property="HeightRequest" Value="35"/>
+                <Setter Property="WidthRequest" Value="35"/>
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    
     <Grid RowDefinitions="*, Auto"
           Padding="20">
         <Border Grid.Row="0"
@@ -33,21 +47,40 @@
 
                 <HorizontalStackLayout Grid.Row="2"
                                        HorizontalOptions="Center"
-                                       Spacing="25">
+                                       Spacing="50">
                     
-                    <Button Text="Copy" 
-                            Command="{Binding CopyFactCommand}"/>
+                    <ImageButton Source="copy.png"
+                                 Style="{StaticResource IconButton}"
+                                 Command="{Binding CopyFactCommand}"/>
 
-                    <Button Text="Speak" 
-                            Command="{Binding SpeakFactCommand}"/>
+                    <ImageButton Source="volume_high.png"
+                                 Style="{StaticResource IconButton}"
+                                 Command="{Binding SpeakFactCommand}"/>
+                    
 
                 </HorizontalStackLayout>
             </Grid>
             
         </Border>
-        <HorizontalStackLayout Grid.Row="1" 
-                               HeightRequest="150">
+        <Grid Grid.Row="1"
+              ColumnDefinitions="*, *, *"
+              HeightRequest="150">
+
+            <ImageButton Source="arrow_left.png"
+                         Grid.Column="0"
+                         Style="{StaticResource IconButton}"
+                         Command="{Binding GetPrevFactCommand}"/>
             
-        </HorizontalStackLayout>
+            <ImageButton Source="share.png"
+                         Grid.Column="1"
+                         Style="{StaticResource IconButtonLarge}"
+                         Command="{Binding ShareFactCommand}"/>
+            
+            <ImageButton Source="arrow_right.png"
+                         Grid.Column="2"
+                         Style="{StaticResource IconButton}"
+                         Command="{Binding GetNextFactCommand}"/>
+    
+        </Grid>
     </Grid>
 </ContentPage>
